@@ -1,0 +1,21 @@
+string nhansonho(string a,int b)
+{
+    string c="";
+    int nho=0;
+    long long tich=1;
+    for(int i= a.size()-1;i>=0;i--)
+    {
+        tich=(a[i]-'0')*b+nho;
+        nho=tich/10;
+        c=char(tich%10+'0')+c;
+    }
+    string d="";
+    if(nho>0)
+    {
+        stringstream ss;
+        ss<<nho;
+        ss>>d;
+        c=d+c;
+    }
+    return c;
+}
