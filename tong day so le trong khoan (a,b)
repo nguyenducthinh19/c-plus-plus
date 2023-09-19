@@ -1,0 +1,11 @@
+using namespace std;
+long long tong(long long a,long long b)
+{
+    if(a%2==0)
+        a++;
+    if(b%2==0)
+        b--;
+    long long dem=(b-a)/2+1;
+    long long sum=((a+b)*dem)/2;
+    return sum;
+}
