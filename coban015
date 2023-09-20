@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool check[1000];
+int x[1000];
+vector<string>res;
+int tohop(int n,int k)
+{
+    int t=1;
+    for(int i=n-k+1;i<=n;i++)
+    t*=i;
+    for(int i=1;i<=k;i++)
+    t/=i;
+    return t;
+}
+void thu(int i,int s,int n,int k)
+{
+    for(int j=s;j<=n;j++)
+    if(!check[j])
+    {
+        check[j]=1;
+        x[i]=j;
+        if(i==k)
+        {
+            string s="[";
+            
+            for(int v=1;v<k;v++)
+            s=s+to_string(x[v])+" ";
+            s=s+to_string(x[k])+"]";
+            res.push_back(s);
+            //cout<<endl;
+        }
+        else thu(i+1,j,n,k);
+        check[j]=0;
+    }
+}
+int test,n,k;
+int main()
+{
+    cin>>test;
+    while(test--)
+    {
+        cin>>n>>k;
+        //cout<<tohop(n,k)<<endl;
+        thu(1,1,n,k);
+        cout<<res.size()<<endl;
+        //sort(res.begin(),res.end());
+        for(auto i:res)cout<<i<<endl;
+        res.clear();
+        
+    }
+    return 0;    
+        
+}
