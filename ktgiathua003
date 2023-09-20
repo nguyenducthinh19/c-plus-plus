@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long dem(long long n)
+{
+    long long res=0;
+    for(long long i=5;i<=n;i*=5)//công thức legendre
+    {
+        res+=n/i;
+    }
+    return res;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        long long n;
+        cin>>n;
+        cout<<dem(n)<<endl;
+    }
+    return 0;
+}
