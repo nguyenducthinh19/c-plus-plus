@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+using namespace std;
+string cong(string s, string x)
+{
+    while(s.size()>x.size())
+        x='0'+x;
+    while(s.size()<x.size())
+        s='0'+s;
+    int nho=0;
+    string c="";
+    for(int i=s.size()-1;i>=0;i--)
+    {
+        int tong=(s[i]-'0')+(x[i]-'0')+nho;
+        if(tong>=10)
+            nho=1;
+        else nho=0;
+        c=char(tong%10+'0')+c;
+    }
+    if(nho==1)
+        c='1'+c;
+    while(c.size()>1&&c[0]=='0')
+    {
+        c.erase(0,1);
+    }
+    return c;
+}
+string nhansonho(string a, int b)
+{
+    string c="";
+    int nho=0;
+    int tich=1;
+    for(int i=a.size()-1;i>=0;i--)
+    {
+        tich=(a[i]-'0')*b+nho;
+        nho=tich/10;
+        c=char(tich%10+'0')+c;
+    }
+    string d="";
+    if(nho>0)
+    {
+        stringstream ss;
+        ss<<nho;
+        ss>>d;
+        c=d+c;
+    }
+    return c;
+}
+string nhansolon(string a,string b)
+{
+    string c="";
+    string tg="";
+    int m=-1;
+    for(int i=a.size()-1;i>=0;i--)
+    {
+        m++;
+        tg=nhansonho(b,a[i]-'0');
+        for(int j=1;j<=m;j++)
+            tg=tg+'0';
+        c=cong(c,tg);
+    }
+    return c;
+}
+int test;
+int main()
+{
+         freopen("bignumber.in","r",stdin);
+         freopen("bignumber.out","w",stdout);
+        cin>>test;
+        while(test--)
+        {
+            string a,b;
+            char o;
+            cin>>a>>o>>b;
+            if(o=='+')cout<<cong(a,b)<<endl;
+            else cout<<nhansolon(a,b)<<endl;
+        }
+         
+        
+}
