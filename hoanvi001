@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int a[100];
+int check[100]={};
+int n;
+void out()
+{
+    for(int i=1;i<=n;i++)
+    {
+        cout<<a[i];
+        if(i<n)cout<<" ";
+//test case trong bài này dấu cách là ký tự=))
+        else cout<<endl;
+    }
+    //cout<<endl;
+}
+void hoanvi(int i)
+{
+    for(int j=1;j<=n;j++)
+    {
+        if(check[j]==0)
+        {
+            check[j]=1;
+            a[i]=j;
+            if(i==n)
+            {
+                out();
+
+            }
+            else hoanvi(i+1);
+            check[j]=0;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        hoanvi(1);
+    }
+    return 0;
+}
