@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+long long giaithua(int n)
+{
+    long long tich=1;
+    for(int i=1;i<=n;i++)
+    {
+        tich*=i;
+    }
+    return tich;
+}
+double ditmethangviet(int n, double x)
+{
+    double sum=0;
+    for(int i=1;i<=n;i++)
+    {
+        sum+=(pow(x,i)/giaithua(i));
+    }
+    return sum;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        double x;
+        cin>>n>>x;
+        cout<<setprecision(3)<<fixed<<ditmethangviet(n,x)<<endl;
+    }
+    return 0;
+}
