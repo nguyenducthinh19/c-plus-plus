@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int d = 0;
+int n;
+int x[10000];
+int cot[1000], d1[1000], d2[1000];
+
+void Try(int i) {
+    for (int j = 1; j <= n; j++) {
+        if (cot[j] == 0 && d1[i - j + n] == 0 && d2[i + j - 1] == 0) {
+            x[j] = i;
+            cot[j] = d1[i - j + n] = d2[i + j - 1] = 1;
+
+            if (i == n) {
+                d++;
+            } else {
+                Try(i + 1);
+            }
+
+            // Đặt lại giá trị của cot, d1, d2 sau khi đã kết thúc đệ quy
+            cot[j] = d1[i - j + n] = d2[i + j - 1] = 0;
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        d = 0;
+        memset(cot, 0, sizeof(cot));
+        memset(d1, 0, sizeof(d1));
+        memset(d2, 0, sizeof(d2));
+        Try(1);
+        cout << d << endl;
+    }
+
+    return 0;
+}
